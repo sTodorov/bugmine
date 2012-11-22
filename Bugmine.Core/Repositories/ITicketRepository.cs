@@ -7,8 +7,8 @@ using Bugmine.Core.Models;
 
 namespace Bugmine.Core.Repositories
 {
-	public class ITicketRepository
+	public interface ITicketRepository
 	{
-		public List<Ticket> GetTickets();
+		List<Ticket> GetTickets();
 	}
 }

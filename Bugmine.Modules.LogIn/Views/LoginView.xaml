@@ -4,17 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            
-        </Grid.ColumnDefinitions>
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid Margin="0,0,0,-212">
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="48,318,0,0" Name="textBlock1" Text="Email" VerticalAlignment="Top" Width="67" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="40,366,0,0" Name="textBlock2" Text="Password" VerticalAlignment="Top" Width="77" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="100,313,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="247" />
+        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="100,366,0,0" Name="passwordBox1" VerticalAlignment="Top" Width="247" />
+        <Button Content="Login" Height="23" HorizontalAlignment="Left" Margin="100,409,0,0" Name="button1" VerticalAlignment="Top" Width="247"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="100,451,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
     </Grid>
 </UserControl>

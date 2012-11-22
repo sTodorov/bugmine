@@ -131,6 +131,10 @@
       <Project>{790f09a3-0c20-4160-8527-78510ccfd891}</Project>
       <Name>Bugmine.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bugmine.Modules.LogIn\Bugmine.Modules.LogIn.csproj">
+      <Project>{28866486-f5d1-4b8e-8896-3c3dd6b77796}</Project>
+      <Name>Bugmine.Modules.LogIn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Bugmine.Modules.MyPage\Bugmine.Modules.MyPage.csproj">
       <Project>{e5ec22fc-d9a6-4d53-b6c5-b6b9e3c16fb7}</Project>
       <Name>Bugmine.Modules.MyPage</Name>
