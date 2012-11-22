@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bugmine.Core.Repositories;
 
 namespace Bugmine.UI
 {
@@ -22,7 +23,7 @@ namespace Bugmine.UI
 	{
 		public Shell()
 		{
-			InitializeComponent();
+			InitializeComponent();	
 		}
 	}
 }
