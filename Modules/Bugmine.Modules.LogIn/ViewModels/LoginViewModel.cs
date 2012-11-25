@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Bugmine.Core.Services;
 using Bugmine.Modules.ModuleBase;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Bugmine.Modules.LogIn.ViewModels
 {
@@ -32,7 +34,8 @@ namespace Bugmine.Modules.LogIn.ViewModels
 
 		public LoginViewModel()
 		{
-			_loginCommand = new RelayCommand(c => this.LoginUser(), c => this.CanLoginUser);
+			if (_loginCommand == null)
+				_loginCommand = new RelayCommand(c => this.LoginUser(), c => this.CanLoginUser);
 		}
 
 		private bool CanLoginUser
@@ -45,9 +48,9 @@ namespace Bugmine.Modules.LogIn.ViewModels
 
 		private void LoginUser()
 		{
-			//todo : Login via service
+			var service = ServiceLocator.Current.GetInstance<IUserService>();
+
+			var isValid = service.IsApiKeyValid(LoginKey);
 		}
-
-
 	}
 }

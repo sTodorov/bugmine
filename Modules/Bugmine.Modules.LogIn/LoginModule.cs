@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bugmine.Modules.LogIn.ViewModels;
 using Bugmine.Modules.LogIn.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Unity;
 
 namespace Bugmine.Modules.LogIn
 {
@@ -13,8 +15,9 @@ namespace Bugmine.Modules.LogIn
 	{
 		private IRegionManager _regionManager;
 
-		public LoginModule(IRegionManager regionManager)
+		public LoginModule(IRegionManager regionManager, IUnityContainer container)
 		{
+			container.RegisterType<LoginViewModel>();
 			_regionManager = regionManager;
 		}
 
