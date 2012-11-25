@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bugmine.Core.Models;
 
-namespace Bugmine.Core.Repositories
+namespace Bugmine.Core.Repositories.Contracts
 {
 	public interface ITicketRepository
 	{
