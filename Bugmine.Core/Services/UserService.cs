@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Bugmine.Core.Configuration;
 using Bugmine.Core.Repositories.Contracts;
 
 namespace Bugmine.Core.Services
@@ -25,7 +26,9 @@ namespace Bugmine.Core.Services
 
 			if (isValid)
 			{
-				//store key for future usage			
+				var appData = ApplicationData.Current;
+				appData.SetApiKey(apiKey);
+
 				return true;
 			}
 			return false;
