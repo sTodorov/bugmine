@@ -12,7 +12,7 @@ namespace Bugmine.Core.Repositories
 	{
 		public bool isUserValid(string apiKey)
 		{
-			var request = ConstructWebRequest("users.xml");
+			var request = ConstructWebRequest("issues.xml", apiKey);
 
 			using (var response = request.GetResponse())
 			{

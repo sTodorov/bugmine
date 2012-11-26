@@ -10,23 +10,17 @@ namespace Bugmine.Core.Repositories
 {
 	public class BaseRepository
 	{
-		protected string ApiKey { get; private set; }
 		private Uri baseUri;
 
 		public BaseRepository()
-			: this(null)
-		{ }
-
-		public BaseRepository(string apiKey)
 		{
-			ApiKey = apiKey;
 			baseUri = new Uri(ConfigurationManager.AppSettings["Redmine.BaseRedmineUrl"]);
 		}
 
-		protected HttpWebRequest ConstructWebRequest(string relativeUrl)
+		protected HttpWebRequest ConstructWebRequest(string relativeUrl, string apiKey)
 		{
 			var request = (HttpWebRequest)WebRequest.Create(new Uri(baseUri, relativeUrl));
-			request.Headers.Add("X-Redmine-API-Key", ApiKey);
+			request.Headers.Add("X-Redmine-API-Key", apiKey);
 
 			return request;
 		}
