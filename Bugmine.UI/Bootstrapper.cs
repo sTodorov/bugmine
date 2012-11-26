@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
+using Bugmine.Core.Configuration;
 using Bugmine.Core.Repositories;
 using Bugmine.Core.Repositories.Contracts;
 using Bugmine.Core.Services;
@@ -20,7 +21,7 @@ namespace Bugmine.UI
 {
 	public class Bootstrapper : UnityBootstrapper
 	{
-		private const string _settingsFileName = "settings.xml";
+
 		protected override System.Windows.DependencyObject CreateShell()
 		{
 			return new Shell();
@@ -59,18 +60,7 @@ namespace Bugmine.UI
 		//TODO: Abstract this and make the settings strongly typed
 		private void InitializeAppDataFile()
 		{
-			var settingsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Bugmine");
-			if (!Directory.Exists(settingsDirectory))
-				Directory.CreateDirectory(settingsDirectory);
-
-			var settingFile = Path.Combine(settingsDirectory, _settingsFileName);
-			if (!File.Exists(settingFile))
-			{
-				XDocument doc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
-																				new XElement("Settings", new XElement("ApiKey", string.Empty)));
-
-				doc.Save(settingFile);
-			}
+			var appData = ApplicationData.Current;			
 		}
 	}
 }
