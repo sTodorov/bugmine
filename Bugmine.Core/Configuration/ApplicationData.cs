@@ -11,31 +11,12 @@ namespace Bugmine.Core.Configuration
 	/// <summary>
 	/// Contains reference to the application data
 	/// </summary>
-	public class ApplicationData
+	public static class ApplicationData
 	{
 		private const string _settingsFileName = "settings.xml";
 
-		private ApplicationData()
-		{
-			Initialize();
-		}
 
-		private static ApplicationData _appData;
-
-		public static ApplicationData Current
-		{
-			get
-			{
-				if (_appData == null)
-				{
-					_appData = new ApplicationData();
-				}
-
-				return _appData;
-			}
-		}
-
-		private void Initialize()
+		public static void Initialize()
 		{
 			var settingFile = GetSettingsFilePath();
 			if (!File.Exists(settingFile))
@@ -47,25 +28,25 @@ namespace Bugmine.Core.Configuration
 			}
 		}
 
-		public string GetApiKey()
+		public static string GetApiKey()
 		{
 			return string.Empty;
 		}
 
-		public void SetApiKey(string key)
+		public static void SetApiKey(string key)
 		{
 			var doc = GetSettingsDocument();
 			doc.Root.Element("ApiKey").SetValue(key);
-			
+
 			doc.Save(GetSettingsFilePath());
 		}
 
-		private XDocument GetSettingsDocument()
+		private static XDocument GetSettingsDocument()
 		{
 			return XDocument.Load(GetSettingsFilePath());
 		}
 
-		private string GetSettingsFilePath()
+		private static string GetSettingsFilePath()
 		{
 			var settingsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Bugmine");
 			if (!Directory.Exists(settingsDirectory))

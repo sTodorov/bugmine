@@ -11,7 +11,9 @@ using Bugmine.Core.Repositories;
 using Bugmine.Core.Repositories.Contracts;
 using Bugmine.Core.Services;
 using Bugmine.Modules.LogIn;
+using Bugmine.Modules.LogIn.Views;
 using Bugmine.Modules.MyPage;
+using Bugmine.Modules.MyPage.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.ServiceLocation;
@@ -47,6 +49,8 @@ namespace Bugmine.UI
 
 			Container.RegisterType<IUserService, UserService>();
 			Container.RegisterType<IUserRepository, UserRepository>();
+			Container.RegisterType<object, LoginView>("LoginView");
+			Container.RegisterType<object, MyPageView>("MyPageView");
 		}
 
 		protected override void ConfigureModuleCatalog()
@@ -57,10 +61,9 @@ namespace Bugmine.UI
 			catalog.AddModule(typeof(LoginModule));
 		}
 
-		//TODO: Abstract this and make the settings strongly typed
 		private void InitializeAppDataFile()
 		{
-			var appData = ApplicationData.Current;			
+			ApplicationData.Initialize();
 		}
 	}
 }

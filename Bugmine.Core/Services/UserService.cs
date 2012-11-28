@@ -26,9 +26,7 @@ namespace Bugmine.Core.Services
 
 			if (isValid)
 			{
-				var appData = ApplicationData.Current;
-				appData.SetApiKey(apiKey);
-
+				ApplicationData.SetApiKey(apiKey);
 				return true;
 			}
 			return false;
