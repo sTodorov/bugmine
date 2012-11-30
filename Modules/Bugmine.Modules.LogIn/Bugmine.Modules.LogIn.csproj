@@ -128,9 +128,9 @@
       <Project>{790f09a3-0c20-4160-8527-78510ccfd891}</Project>
       <Name>Bugmine.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Bugmine.UI.Controls\Bugmine.UI.Controls.csproj">
+    <ProjectReference Include="..\..\Bugmine.UI.Controls\Bugmine.UI.Resources.csproj">
       <Project>{b0967e34-c309-4545-8086-076dad77e9ba}</Project>
-      <Name>Bugmine.UI.Controls</Name>
+      <Name>Bugmine.UI.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bugmine.Modules.ModuleBase\Bugmine.Modules.ModuleBase.csproj">
       <Project>{c13d2097-52fe-4698-b66e-1d3f79e7e308}</Project>

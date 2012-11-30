@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bugmine.Modules.LogIn.ViewModels;
 
 namespace Bugmine.Modules.LogIn.Views
 {
@@ -20,9 +21,10 @@ namespace Bugmine.Modules.LogIn.Views
 	/// </summary>
 	public partial class LoginView : UserControl
 	{
-		public LoginView()
+		public LoginView(LoginViewModel model)
 		{
 			InitializeComponent();
+			DataContext = model;
 		}
 	}
 }

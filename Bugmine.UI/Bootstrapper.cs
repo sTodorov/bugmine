@@ -11,9 +11,11 @@ using Bugmine.Core.Repositories;
 using Bugmine.Core.Repositories.Contracts;
 using Bugmine.Core.Services;
 using Bugmine.Modules.LogIn;
+using Bugmine.Modules.LogIn.ViewModels;
 using Bugmine.Modules.LogIn.Views;
 using Bugmine.Modules.MyPage;
 using Bugmine.Modules.MyPage.Views;
+using Bugmine.UI.Controls;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.ServiceLocation;
@@ -49,8 +51,9 @@ namespace Bugmine.UI
 
 			Container.RegisterType<IUserService, UserService>();
 			Container.RegisterType<IUserRepository, UserRepository>();
-			Container.RegisterType<object, LoginView>("LoginView");
-			Container.RegisterType<object, MyPageView>("MyPageView");
+			Container.RegisterType<object, LoginViewModel>();
+			Container.RegisterType<object, LoginView>(ViewNames.LoginView);
+			Container.RegisterType<object, MyPageView>(ViewNames.MyPageView);
 		}
 
 		protected override void ConfigureModuleCatalog()

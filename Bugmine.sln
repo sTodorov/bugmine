@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9C0F5F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugmine.Modules.ModuleBase", "Modules\Bugmine.Modules.ModuleBase\Bugmine.Modules.ModuleBase.csproj", "{C13D2097-52FE-4698-B66E-1D3F79E7E308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugmine.UI.Controls", "Bugmine.UI.Controls\Bugmine.UI.Controls.csproj", "{B0967E34-C309-4545-8086-076DAD77E9BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugmine.UI.Resources", "Bugmine.UI.Controls\Bugmine.UI.Resources.csproj", "{B0967E34-C309-4545-8086-076DAD77E9BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

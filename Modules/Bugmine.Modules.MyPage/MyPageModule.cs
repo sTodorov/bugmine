@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bugmine.Modules.MyPage.Views;
+using Bugmine.UI.Controls;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
@@ -20,7 +21,7 @@ namespace Bugmine.Modules.MyPage
 
 		public void Initialize()
 		{
-			_regionManager.RegisterViewWithRegion("MainRegion", typeof(MyPageView));
+			_regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(MyPageView));
 		}
 	}
 }

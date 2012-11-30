@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bugmine.Modules.LogIn.ViewModels;
 using Bugmine.Modules.LogIn.Views;
+using Bugmine.UI.Controls;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
@@ -23,7 +24,7 @@ namespace Bugmine.Modules.LogIn
 
 		public void Initialize()
 		{
-			_regionManager.RegisterViewWithRegion("MainRegion", typeof(LoginView));
+			_regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(LoginView));
 		}
 	}
 }

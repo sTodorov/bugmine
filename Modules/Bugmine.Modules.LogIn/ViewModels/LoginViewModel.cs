@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using Bugmine.Core.Services;
 using Bugmine.Modules.ModuleBase;
 using Bugmine.UI.Controls;
@@ -27,20 +28,43 @@ namespace Bugmine.Modules.LogIn.ViewModels
 			set { this.RaiseAndSetIfChanged(c => c.LoginKey, value); }
 		}
 
-		public ICommand LoginCommand { get { return _loginCommand; } }
-		private ReactiveAsyncCommand _loginCommand;
 
-		public LoginViewModel()
+		private ReactiveCommand _loginCommand;
+		public ICommand LoginCommand { get { return _loginCommand; } }
+
+		private IRegionManager _regionManager;
+		private IUserService _userService;
+
+		public LoginViewModel() : this(null, null) { }
+
+		public LoginViewModel(IRegionManager regionManager, IUserService userService)
 		{
-			_loginCommand = new ReactiveAsyncCommand(this.WhenAny(c => c.LoginKey,
-																													 c =>!string.IsNullOrEmpty(c.Value)
-																												&& c.Value.Length == 5));
-			_loginCommand.RegisterAsyncAction(c => Login());
+			_regionManager = regionManager;
+			_userService = userService;
+
+			_loginCommand = new ReactiveCommand(this.WhenAny(c => c.LoginKey,
+																													 c => !string.IsNullOrEmpty(c.Value)));
+
+
+			_loginCommand.Subscribe(_ => Login());
 
 		}
 
-		private bool Login() {
-			return true;
+		public void Login()
+		{
+			try
+			{
+				var isValid = _userService.IsApiKeyValid(LoginKey);
+				foreach (var view in _regionManager.Regions["MainRegion"].Views)
+				{
+					_regionManager.Regions["MainRegion"].Remove(view);
+				}
+				_regionManager.RequestNavigate("MainRegion", new Uri("MyPageView", UriKind.Relative));
+			}
+			catch (Exception e)
+			{
+				//display some kind of error
+			}
 		}
 
 	}
