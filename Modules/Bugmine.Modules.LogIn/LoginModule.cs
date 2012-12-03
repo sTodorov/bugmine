@@ -18,7 +18,6 @@ namespace Bugmine.Modules.LogIn
 
 		public LoginModule(IRegionManager regionManager, IUnityContainer container)
 		{
-			container.RegisterType<LoginViewModel>();
 			_regionManager = regionManager;
 		}
 
