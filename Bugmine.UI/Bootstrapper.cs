@@ -16,6 +16,7 @@ using Bugmine.Modules.LogIn.Views;
 using Bugmine.Modules.MyPage;
 using Bugmine.Modules.MyPage.Views;
 using Bugmine.UI.Controls;
+using Bugmine.UI.Controls.Navigation;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.ServiceLocation;
@@ -51,6 +52,8 @@ namespace Bugmine.UI
 
 			Container.RegisterType<IUserService, UserService>();
 			Container.RegisterType<IUserRepository, UserRepository>();
+			Container.RegisterType<INavigationController, NavigationController>();
+
 			Container.RegisterType<object, LoginViewModel>();
 			Container.RegisterType<object, LoginView>(ViewNames.LoginView);
 			Container.RegisterType<object, MyPageView>(ViewNames.MyPageView);

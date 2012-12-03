@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using Bugmine.Core.Services;
 using Bugmine.Modules.ModuleBase;
 using Bugmine.UI.Controls;
+using Bugmine.UI.Controls.Navigation;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
@@ -34,14 +35,15 @@ namespace Bugmine.Modules.LogIn.ViewModels
 
 		private IRegionManager _regionManager;
 		private IUserService _userService;
+		private INavigationController _navigation;
 
-		public LoginViewModel() : this(null, null) { }
+		public LoginViewModel() : this(null, null, null) { }
 
-		public LoginViewModel(IRegionManager regionManager, IUserService userService)
+		public LoginViewModel(IRegionManager regionManager, IUserService userService, INavigationController navigationController)
 		{
 			_regionManager = regionManager;
 			_userService = userService;
-
+			_navigation = navigationController;
 			_loginCommand = new ReactiveCommand(this.WhenAny(c => c.LoginKey,
 																													 c => !string.IsNullOrEmpty(c.Value)));
 
@@ -55,11 +57,7 @@ namespace Bugmine.Modules.LogIn.ViewModels
 			try
 			{
 				var isValid = _userService.IsApiKeyValid(LoginKey);
-				foreach (var view in _regionManager.Regions["MainRegion"].Views)
-				{
-					_regionManager.Regions["MainRegion"].Remove(view);
-				}
-				_regionManager.RequestNavigate("MainRegion", new Uri("MyPageView", UriKind.Relative));
+				_navigation.NavigateToMainView();
 			}
 			catch (Exception e)
 			{
@@ -70,70 +68,4 @@ namespace Bugmine.Modules.LogIn.ViewModels
 	}
 
 }
-#region Implementation with INotifyChanged
-
-//public class LoginViewModel : BaseViewModel
-//{
-//	public ICommand LoginCommand { get { return _loginCommand; } }
-//	private ICommand _loginCommand;
-
-//	private string _loginKey;
-//	public string LoginKey
-//	{
-//		get { return _loginKey; }
-//		set
-//		{
-//			if (value != _loginKey)
-//			{
-//				_loginKey = value;
-
-//				OnPropertyChanged("LoginKey");
-//			}
-//		}
-//	}
-
-//	public LoginViewModel()
-//	{
-//		if (_loginCommand == null)
-//			_loginCommand = new RelayCommand(c => this.LoginUser(), c => this.CanLoginUser);
-
-//		_regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-//	}
-
-//	private IRegionManager _regionManager;
-
-//	private bool CanLoginUser
-//	{
-//		get
-//		{
-//			return !string.IsNullOrEmpty(_loginKey);
-//		}
-//	}
-
-//	private void LoginUser()
-//	{
-//		var service = ServiceLocator.Current.GetInstance<IUserService>();
-
-//		var region = _regionManager.Regions["MainRegion"];
-//		var loader = new Loader();
-
-//		region.Add(loader);
-
-//		try
-//		{
-//			var isValid = service.IsApiKeyValid(LoginKey);
-//			if (isValid)
-//			{
-//				_regionManager.RequestNavigate("MainRegion", new Uri("MyPageView", UriKind.Relative));
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			LoginKey = "Error: " + e.Message;
-//		}
-//		region.Remove(loader);
-//	}
-
-//}
-#endregion
 
