@@ -8,6 +8,6 @@ namespace Bugmine.UI.Controls.Navigation
 {
 	public interface INavigationController
 	{
-		void GoTo(string region, string view);
+		void NavigateToMainView();
 	}
 }

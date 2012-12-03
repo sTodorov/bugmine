@@ -19,17 +19,13 @@ namespace Bugmine.UI.Controls.Navigation
 			_container = container;
 		}
 
-		public void GoTo(string regionName, object view)
+		public void NavigateToMainView()
 		{
-			var region = _regionManager.Regions[regionName];
-			
-			foreach (var viewName in region.Views)
+			foreach (var view in _regionManager.Regions[RegionNames.MainRegion].Views)
 			{
-				region.Remove(viewName);
+				_regionManager.Regions[RegionNames.MainRegion].Remove(view);
 			}
-
-			region.Add(view);
-			region.Activate(view);
+			_regionManager.RequestNavigate(RegionNames.MainRegion, new Uri(ViewNames.MyPageView, UriKind.Relative));
 		}
 	}
 }
