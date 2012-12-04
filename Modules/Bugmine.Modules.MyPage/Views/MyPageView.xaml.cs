@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bugmine.Modules.MyPage.ViewModels;
 
 namespace Bugmine.Modules.MyPage.Views
 {
@@ -20,9 +21,10 @@ namespace Bugmine.Modules.MyPage.Views
 	/// </summary>
 	public partial class MyPageView : UserControl
 	{
-		public MyPageView()
+		public MyPageView(MyPageViewModel model)
 		{
 			InitializeComponent();
+			DataContext = model;
 		}
 	}
 }
