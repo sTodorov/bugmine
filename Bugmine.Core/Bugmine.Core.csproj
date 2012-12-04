@@ -51,7 +51,9 @@
     <Compile Include="Repositories\Contracts\IUserRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\ITicketService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\TicketService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup />
