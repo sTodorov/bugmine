@@ -6,14 +6,13 @@
 						 xmlns:local="clr-namespace:Bugmine.Modules.MyPage.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
-	<ItemsControl ItemsSource="{Binding Tickets}">
-		<!--<ItemsPanelTemplate>
-			<Grid>
-				<Grid.ColumnDefinitions>
-					
-				</Grid.ColumnDefinitions>
-			</Grid>
-		</ItemsPanelTemplate>-->
-		
-	</ItemsControl>
+	
+        <ListView ItemsSource="{Binding Tickets}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding TicketNumber}" Header="Ticket num" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
+                </GridView>
+            </ListView.View>
+        </ListView>		
 </UserControl>
