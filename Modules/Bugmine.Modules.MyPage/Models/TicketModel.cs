@@ -16,10 +16,10 @@ namespace Bugmine.Modules.MyPage.Models
 
 		public DateTime DueDate { get; set; }
 
-		public DateTime EstimatedTime { get; set; }
+		public TimeSpan EstimatedTime { get; set; }
 
-		public DateTime SpentTime { get; set; }
+		public TimeSpan SpentTime { get; set; }
 
-		public DateTime SpentTimeUnCommited { get; set; }
+		public TimeSpan SpentTimeUnCommited { get; set; }
 	}
 }

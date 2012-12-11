@@ -5,14 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 						 xmlns:local="clr-namespace:Bugmine.Modules.MyPage.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="400">
+             d:DesignHeight="600" d:DesignWidth="500">
 	
-        <ListView ItemsSource="{Binding Tickets}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding TicketNumber}" Header="Ticket num" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
-                </GridView>
-            </ListView.View>
-        </ListView>		
+		<ItemsControl ItemsSource="{Binding Tickets}" Margin="10">
+		<ItemsControl.ItemTemplate>
+			<DataTemplate>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50"></ColumnDefinition>
+						<ColumnDefinition Width="100"></ColumnDefinition>
+						<ColumnDefinition Width="50"></ColumnDefinition>
+						<ColumnDefinition Width="100"></ColumnDefinition>
+						<ColumnDefinition Width="100"></ColumnDefinition>
+						<ColumnDefinition Width="100"></ColumnDefinition>
+						<ColumnDefinition Width="100"></ColumnDefinition>
+						<ColumnDefinition></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Column="0" Text="{Binding Path=TicketNumber}" />
+					<TextBlock Grid.Column="1" Text="{Binding Path=Name}" />
+					<TextBlock Grid.Column="2" Text="{Binding Path=Status}" />
+					<TextBlock Grid.Column="3" Text="{Binding Path=DueDate, StringFormat={}{0: dd/MM/yyyy}}"/>
+					<TextBlock Grid.Column="4" Text="{Binding Path=EstimatedTime}"/>
+					<TextBlock Grid.Column="5" Text="{Binding Path=SpentTime}"/>
+				</Grid>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>		
+	</ItemsControl>	
 </UserControl>

@@ -27,18 +27,18 @@ namespace Bugmine.Modules.MyPage.ViewModels
 					Status = "Assigned",
 					TicketNumber = 1234,
 					DueDate = DateTime.Now,
-					EstimatedTime = new DateTime().AddHours(6),
-					SpentTime = new DateTime().AddHours(4),
-					SpentTimeUnCommited = new DateTime().AddHours(1)
+					EstimatedTime = new TimeSpan(6,30,0),
+					SpentTime = new TimeSpan(2, 0,0),
+					SpentTimeUnCommited = new TimeSpan(4,30,0)
 				},
 				new TicketModel{
 					Name = "Test ticket 2",
 					Status = "Assigned",
 					TicketNumber = 1235,
 					DueDate = DateTime.Now,
-					EstimatedTime = new DateTime().AddHours(6),
-					SpentTime = new DateTime().AddHours(4),
-					SpentTimeUnCommited = new DateTime().AddHours(1)
+					EstimatedTime = new TimeSpan(6,30,0),
+					SpentTime = new TimeSpan(2, 30,0),
+					SpentTimeUnCommited = new TimeSpan(5,30,0)
 				}
 			};
 		}
