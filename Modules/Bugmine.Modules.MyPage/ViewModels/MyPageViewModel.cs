@@ -17,8 +17,13 @@ namespace Bugmine.Modules.MyPage.ViewModels
 		/// <summary>
 		/// Collection of tickets
 		/// </summary>
-		public ReactiveCollection<TicketModel> Tickets { get; protected set; }
+		public List<TicketModel> Tickets
+		{
+			get { return _Tickets.Value; }
+			set { this.RaiseAndSetIfChanged(c => c.Tickets, value); }
+		}
 
+		private ObservableAsPropertyHelper<List<TicketModel>> _Tickets;
 
 
 		/// <summary>
@@ -35,13 +40,13 @@ namespace Bugmine.Modules.MyPage.ViewModels
 
 			LoadTickets = new ReactiveAsyncCommand(null, 0);
 
-			LoadTickets.RegisterAsyncFunction(x => loadTickets().ToObservable().CreateCollection())
-				.ToProperty<MyPageViewModel, ReactiveCollection<TicketModel>>(this, x => x.Tickets);
+			LoadTickets.RegisterAsyncFunction(x => loadTickets())
+				.ToProperty(this, x => x.Tickets);
 
-			Observable.Timer(TimeSpan.FromMinutes(5), RxApp.DeferredScheduler)
+			Observable.Timer(TimeSpan.FromSeconds(5), RxApp.DeferredScheduler)
 		.InvokeCommand(LoadTickets);
 
-			//LoadTickets.Execute(null);
+			LoadTickets.Execute(null);
 		}
 
 		/// <summary>
