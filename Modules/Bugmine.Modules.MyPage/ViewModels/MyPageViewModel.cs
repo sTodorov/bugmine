@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bugmine.Core.Services;
+using Bugmine.Modules.MyPage.Mappers;
 using Bugmine.Modules.MyPage.Models;
 using ReactiveUI;
 using ReactiveUI.Xaml;
@@ -14,9 +15,6 @@ namespace Bugmine.Modules.MyPage.ViewModels
 {
 	public class MyPageViewModel : ReactiveValidatedObject
 	{
-		/// <summary>
-		/// Collection of tickets
-		/// </summary>
 		public List<TicketModel> Tickets
 		{
 			get { return _Tickets.Value; }
@@ -25,18 +23,16 @@ namespace Bugmine.Modules.MyPage.ViewModels
 
 		private ObservableAsPropertyHelper<List<TicketModel>> _Tickets;
 
-
-		/// <summary>
-		/// The service which retrieves the tickets
-		/// </summary>
 		private ITicketService _ticketService;
+		private ITicketMapper _mapper;
 
-		public MyPageViewModel() : this(null) { }
+		public MyPageViewModel() : this(null, null) { }
 
 
-		public MyPageViewModel(ITicketService ticketService)
+		public MyPageViewModel(ITicketService ticketService, ITicketMapper mapper)
 		{
 			_ticketService = ticketService;
+			_mapper = mapper;
 
 			LoadTickets = new ReactiveAsyncCommand(null, 0);
 
@@ -49,21 +45,13 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			LoadTickets.Execute(null);
 		}
 
-		/// <summary>
-		/// A command which exposes the load action for the tickets
-		/// </summary>
 		public ReactiveAsyncCommand LoadTickets { get; private set; }
 
 		private List<TicketModel> loadTickets()
 		{
-			var ticketModel = new List<TicketModel>() { 
-				new TicketModel(){
-						Name = "asd",
-						TicketNumber= 123
-				}
-			};
+			var tickets = _ticketService.GetTickets();
 
-			return ticketModel;
+			return _mapper.Map(tickets);
 		}
 	}
 }

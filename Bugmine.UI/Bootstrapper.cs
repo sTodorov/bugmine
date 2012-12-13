@@ -14,6 +14,7 @@ using Bugmine.Modules.LogIn;
 using Bugmine.Modules.LogIn.ViewModels;
 using Bugmine.Modules.LogIn.Views;
 using Bugmine.Modules.MyPage;
+using Bugmine.Modules.MyPage.Mappers;
 using Bugmine.Modules.MyPage.ViewModels;
 using Bugmine.Modules.MyPage.Views;
 using Bugmine.UI.Controls;
@@ -56,6 +57,8 @@ namespace Bugmine.UI
 			Container.RegisterType<INavigationController, NavigationController>();
 			Container.RegisterType<ITicketService, TicketService>();
 			Container.RegisterType<ITicketRepository, TicketRepository>();
+			Container.RegisterType<ITicketMapper, TicketMapper>();
+
 
 			Container.RegisterType<object, LoginViewModel>();
 			Container.RegisterType<object, MyPageViewModel>();
