@@ -13,7 +13,10 @@ namespace Bugmine.Modules.MyPage.Mappers
 		public TicketMapper()
 		{
 			AutoMapper.Mapper.CreateMap<Ticket, TicketModel>()
-				.ForMember(c => c.TicketNumber, c => c.MapFrom(s => s.Id));
+				.ForMember(c => c.TicketNumber, c => c.MapFrom(s => s.Id))
+				.ForMember(c => c.EstimatedTime, c => c.MapFrom(s => new TimeSpan((int)s.EstimatedHours)))
+				.ForMember(c => c.SpentTime, c => c.MapFrom(s => new TimeSpan((int)s.LoggedHours)));
+
 		}
 
 		public List<Models.TicketModel> Map(List<Core.Models.Ticket> Tickets)
