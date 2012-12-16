@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Bugmine.Core.Models;
 using Bugmine.Core.Redmine;
+using Bugmine.Core.Redmine.Mappers;
 using Bugmine.Core.Redmine.Parsers;
 using Bugmine.Core.Repositories.Contracts;
 using ServiceStack.Text;
@@ -17,10 +18,12 @@ namespace Bugmine.Core.Repositories
 	public class TicketRepository : BaseRepository, ITicketRepository
 	{
 		private ITicketParser _ticketParser;
+		private ITicketResultMapper _ticketMapper;
 
-		public TicketRepository(ITicketParser ticketParser)
+		public TicketRepository(ITicketParser ticketParser, ITicketResultMapper ticketMapper)
 		{
 			_ticketParser = ticketParser;
+			_ticketMapper = ticketMapper;
 		}
 
 		public List<Models.Ticket> GetTickets(int userID, string apiKey)
@@ -35,9 +38,7 @@ namespace Bugmine.Core.Repositories
 
 					var tickets = _ticketParser.ParseTickets(json);
 
-					//map tickets results to ticket
-					List<Ticket> result = new List<Ticket>();
-					return result;
+					return _ticketMapper.MapFromTicketResult(tickets);
 				}
 			}
 		}
