@@ -1,0 +1,2 @@
+﻿--Implement repositories via DI
+--Test api calls with strings
