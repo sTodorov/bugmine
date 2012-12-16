@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
@@ -39,8 +40,9 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			LoadTickets.RegisterAsyncFunction(x => loadTickets())
 				.ToProperty(this, x => x.Tickets);
 
-			Observable.Timer(TimeSpan.FromSeconds(5), RxApp.DeferredScheduler)
-		.InvokeCommand(LoadTickets);
+			//TODO: make this work. call command each 5 seconds
+			//Observable.Timer(TimeSpan.FromSeconds(5), RxApp.DeferredScheduler).Subscribe(c => LoadTickets.Execute(null));
+			//.InvokeCommand(LoadTickets);
 
 			LoadTickets.Execute(null);
 		}
