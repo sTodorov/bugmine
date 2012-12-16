@@ -9,6 +9,6 @@ namespace Bugmine.Core.Repositories.Contracts
 {
 	public interface ITicketRepository
 	{
-		List<Ticket> GetTickets();
+		List<Ticket> GetTickets(int userID, string apiKey);
 	}
 }

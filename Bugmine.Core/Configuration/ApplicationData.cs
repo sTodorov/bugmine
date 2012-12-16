@@ -22,7 +22,8 @@ namespace Bugmine.Core.Configuration
 			if (!File.Exists(settingFile))
 			{
 				XDocument doc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
-																				new XElement("Settings", new XElement("ApiKey", string.Empty)));
+																				new XElement("Settings", new XElement("ApiKey", string.Empty),
+																																new XElement("UserID", string.Empty)));
 
 				doc.Save(settingFile);
 			}
@@ -30,7 +31,13 @@ namespace Bugmine.Core.Configuration
 
 		public static string GetApiKey()
 		{
-			return string.Empty;
+			var doc = GetSettingsDocument();
+
+			var userElement = doc.Element("Settings").Element("ApiKey");
+			if (userElement == null) throw new InvalidOperationException("Api key element is not defined");
+
+			return userElement.Value;
+
 		}
 
 		public static void SetApiKey(string key)
@@ -55,6 +62,30 @@ namespace Bugmine.Core.Configuration
 			var settingFile = Path.Combine(settingsDirectory, _settingsFileName);
 
 			return settingFile;
+		}
+
+		public static void SetUserID(int userID)
+		{
+			var doc = GetSettingsDocument();
+			doc.Root.Element("UserID").SetValue(userID);
+
+			doc.Save(GetSettingsFilePath());
+		}
+
+		public static int GetUserID()
+		{
+			var doc = GetSettingsDocument();
+
+			var userElement = doc.Element("Settings").Element("UserID");
+			if (userElement == null) throw new InvalidOperationException("UserID element is not defined");
+			int userID = 0;
+
+			if (!int.TryParse(userElement.Value, out userID))
+			{
+				throw new InvalidCastException("UserID can't be cast to a number");
+			}
+
+			return userID;
 		}
 	}
 }

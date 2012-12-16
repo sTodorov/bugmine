@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
 using Bugmine.Core.Configuration;
+using Bugmine.Core.Redmine.Parsers;
 using Bugmine.Core.Repositories;
 using Bugmine.Core.Repositories.Contracts;
 using Bugmine.Core.Services;
@@ -65,6 +66,8 @@ namespace Bugmine.UI
 
 			Container.RegisterType<object, LoginView>(ViewNames.LoginView);
 			Container.RegisterType<object, MyPageView>(ViewNames.MyPageView);
+
+			Container.RegisterType<ITicketParser, JsonTicketParser>();
 		}
 
 		protected override void ConfigureModuleCatalog()
