@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.3.9.32\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
@@ -47,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ApplicationData.cs" />
+    <Compile Include="Redmine\Mappers\ITicketResultMapper.cs" />
+    <Compile Include="Redmine\Mappers\TicketResultMapper.cs" />
     <Compile Include="Redmine\RedmineUrls.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
