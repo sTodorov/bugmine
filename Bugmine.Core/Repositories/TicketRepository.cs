@@ -17,12 +17,10 @@ namespace Bugmine.Core.Repositories
 {
 	public class TicketRepository : BaseRepository, ITicketRepository
 	{
-		private ITicketParser _ticketParser;
 		private ITicketResultMapper _ticketMapper;
 
-		public TicketRepository(ITicketParser ticketParser, ITicketResultMapper ticketMapper)
+		public TicketRepository(ITicketResultMapper ticketMapper)
 		{
-			_ticketParser = ticketParser;
 			_ticketMapper = ticketMapper;
 		}
 
@@ -36,7 +34,7 @@ namespace Bugmine.Core.Repositories
 				{
 					string json = reader.ReadToEnd();
 
-					var tickets = _ticketParser.ParseTickets(json);
+					var tickets = Parser.ParseTickets(json);
 
 					return _ticketMapper.MapFromTicketResult(tickets);
 				}

@@ -67,7 +67,6 @@ namespace Bugmine.UI
 			Container.RegisterType<object, LoginView>(ViewNames.LoginView);
 			Container.RegisterType<object, MyPageView>(ViewNames.MyPageView);
 
-			Container.RegisterType<ITicketParser, JsonTicketParser>();
 		}
 
 		protected override void ConfigureModuleCatalog()
