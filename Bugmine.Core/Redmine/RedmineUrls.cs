@@ -8,7 +8,7 @@ namespace Bugmine.Core.Redmine
 {
 	public class RedmineUrls
 	{
-		public const string tickets = "tickets.json";
+		public const string tickets = "issues.json";
 		public const string issues = "issues.xml";
 	}
 }
