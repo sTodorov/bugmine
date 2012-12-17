@@ -20,7 +20,8 @@ namespace Bugmine.Core.Redmine.Mappers
 				.ForMember(c => c.Project, c => c.MapFrom(m => m.project.name))
 				.ForMember(c => c.EstimatedHours, c => c.MapFrom(m => m.estimated_hours));
 
-			
+			Mapper.CreateMap<TicketsResult, Page<Ticket>>().ConstructUsing(c => new Page<Ticket>(c.limit, c.total_count, c.offset, AutoMapper.Mapper.Map<List<TicketResult>, List<Ticket>>(c.issues)));
+
 
 		}
 
