@@ -14,9 +14,9 @@ namespace Bugmine.Modules.MyPage.Models
 
 		public int TicketNumber { get; set; }
 
-		public DateTime DueDate { get; set; }
+		public DateTime? DueDate { get; set; }
 
-		public TimeSpan EstimatedTime { get; set; }
+		public TimeSpan? EstimatedTime { get; set; }
 
 		public TimeSpan SpentTime { get; set; }
 
