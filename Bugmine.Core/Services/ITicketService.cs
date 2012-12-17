@@ -9,6 +9,6 @@ namespace Bugmine.Core.Services
 {
 	public interface ITicketService
 	{
-		List<Ticket> GetTickets();
+		Page<Ticket> GetTickets();
 	}
 }

@@ -9,6 +9,6 @@ namespace Bugmine.Core.Redmine.Mappers
 {
 	public interface ITicketResultMapper
 	{
-		List<Ticket> MapFromTicketResult(TicketsResult result);
+		Page<Ticket> MapFromTicketResult(TicketsResult result);
  	}
 }

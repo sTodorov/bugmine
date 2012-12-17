@@ -18,7 +18,7 @@ namespace Bugmine.Core.Services
 			_ticketRepository = ticketRepo;
 		}
 
-		public List<Ticket> GetTickets()
+		public Page<Ticket> GetTickets()
 		{
 			string apiKey = ApplicationData.GetApiKey();
 			int userID = ApplicationData.GetUserID();

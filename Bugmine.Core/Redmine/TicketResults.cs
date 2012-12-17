@@ -23,6 +23,7 @@ namespace Bugmine.Core.Redmine
 		public TrackerResult tracker { get; set; }
 		public AssignedToResult assigned_to { get; set; }
 		public ProjectResult project { get; set; }
+		public decimal estimated_hours { get; set; }
 		public int done_ration { get; set; }
 		public DateTime created_on { get; set; }
 		public DateTime? start_date { get; set; }

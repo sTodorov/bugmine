@@ -26,7 +26,7 @@ namespace Bugmine.Core.Repositories
 			_ticketMapper = ticketMapper;
 		}
 
-		public List<Models.Ticket> GetTickets(int userID, string apiKey)
+		public Page<Models.Ticket> GetTickets(int userID, string apiKey)
 		{
 			var request = ConstructWebRequest(string.Format("{0}?assigned_to_id={1};limit=15000", RedmineUrls.tickets, userID), apiKey);
 
