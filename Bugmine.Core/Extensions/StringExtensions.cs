@@ -13,5 +13,12 @@ namespace System
 			if (string.IsNullOrEmpty(instance))
 				throw new InvalidOperationException(message ?? "String can't be null or empty");
 		}
+
+		public static string Cap(this string instance, int charCap = 100)
+		{
+			if (string.IsNullOrEmpty(instance)) return instance;
+
+			return instance.Substring(0, Math.Min(charCap, instance.Length));
+		}
 	}
 }
