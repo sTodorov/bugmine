@@ -8,6 +8,6 @@ namespace Bugmine.Core.Services
 {
 	public interface IUserService
 	{
-		bool IsApiKeyValid(string apiKey);
+		bool CheckAndLoginIfValid(string apiKey, int userID);
 	}
 }

@@ -9,10 +9,12 @@
 	<UserControl.DataContext>
 		<local:LoginViewModel />
 	</UserControl.DataContext>
-		<Grid Margin="0,0,0,-212">	
-				<TextBlock Height="23" HorizontalAlignment="Left" Margin="48,318,0,0" Text="Key" VerticalAlignment="Top" Width="67" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="100,313,0,0" VerticalAlignment="Top" Width="247" Text="{Binding LoginKey, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Content="Login" Height="67" HorizontalAlignment="Left" Margin="100,346,0,0" VerticalAlignment="Top" Width="247" Command="{Binding LoginCommand}"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="100,451,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
-    </Grid>
+	<Grid Margin="0,0,0,-212">
+		<TextBlock Height="23" HorizontalAlignment="Left" Margin="48,318,0,0" Text="Key" VerticalAlignment="Top" Width="67" />
+		<TextBox Height="23" HorizontalAlignment="Left" Margin="100,313,0,0" VerticalAlignment="Top" Width="247" Text="{Binding LoginKey, UpdateSourceTrigger=PropertyChanged}"/>
+		<TextBlock Height="23" HorizontalAlignment="Left" Margin="33,355,0,0" Text="User ID" VerticalAlignment="Top" Width="67" />
+		<TextBox Height="23" HorizontalAlignment="Left" Margin="100,355,0,0" VerticalAlignment="Top" Width="247" Text="{Binding UserID, UpdateSourceTrigger=PropertyChanged}"/>
+		<Button Content="Login" Height="67" HorizontalAlignment="Left" Margin="100,396,0,0" VerticalAlignment="Top" Width="247" Command="{Binding LoginCommand}"/>
+		<TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="100,451,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
+	</Grid>
 </UserControl>

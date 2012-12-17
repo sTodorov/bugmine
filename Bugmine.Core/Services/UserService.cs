@@ -18,18 +18,25 @@ namespace Bugmine.Core.Services
 			_userRepository = userRepo;
 		}
 
-		public bool IsApiKeyValid(string apiKey)
+		public bool CheckAndLoginIfValid(string apiKey, int userID)
 		{
 			apiKey.ThrowIfNullOrEmpty();
-
-			var isValid = _userRepository.isUserValid(apiKey);
-
-			if (isValid)
+			try
 			{
-				ApplicationData.SetApiKey(apiKey);
+				var isValid = _userRepository.isUserValid(apiKey);
+
+				if (isValid)
+				{
+					ApplicationData.SetApiKey(apiKey);
+					ApplicationData.SetUserID(userID);
+				}
+
 				return true;
 			}
-			return false;
+			catch (Exception)
+			{
+				return false;
+			}
 		}
 	}
 }
