@@ -27,6 +27,7 @@ namespace Bugmine.Core.Redmine
 		public int done_ration { get; set; }
 		public DateTime created_on { get; set; }
 		public DateTime? start_date { get; set; }
+		public DateTime? due_date { get; set; }
 		public string subject { get; set; }
 		public string description { get; set; }
 		public int id { get; set; }

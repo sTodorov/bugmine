@@ -14,13 +14,14 @@ namespace Bugmine.Core.Redmine.Mappers
 		{
 			AutoMapper.Mapper.CreateMap<TicketResult, Ticket>()
 				.ForMember(c => c.Id, c => c.MapFrom(m => m.id))
-				.ForMember(c => c.Name, c => c.MapFrom(m => m.author.name))
+				.ForMember(c => c.Name, c => c.MapFrom(m => m.subject))
 				.ForMember(c => c.Priority, c => c.MapFrom(m => m.priority.name))
+				.ForMember(c => c.DueDate, c => c.MapFrom(m => m.due_date))
 				.ForMember(c => c.Status, c => c.MapFrom(m => m.status.name))
 				.ForMember(c => c.Project, c => c.MapFrom(m => m.project.name))
 				.ForMember(c => c.EstimatedHours, c => c.MapFrom(m => m.estimated_hours));
 
-			Mapper.CreateMap<TicketsResult, Page<Ticket>>().ConstructUsing(c => new Page<Ticket>(c.limit, c.total_count, c.offset, AutoMapper.Mapper.Map<List<TicketResult>, List<Ticket>>(c.issues)));
+			Mapper.CreateMap<TicketsResult, Page<Ticket>>().ConstructUsing(c => new Page<Ticket>(c.offset, c.total_count, c.limit, AutoMapper.Mapper.Map<List<TicketResult>, List<Ticket>>(c.issues)));
 
 
 		}

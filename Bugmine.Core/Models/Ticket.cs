@@ -20,6 +20,8 @@ namespace Bugmine.Core.Models
 
 		public decimal LoggedHours { get; set; }
 
+		public DateTime? DueDate { get; set; }
+
 		public string Priority { get; set; }
 	}
 }

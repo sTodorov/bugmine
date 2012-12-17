@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
 using Bugmine.Core.Configuration;
+using Bugmine.Core.Redmine.Mappers;
 using Bugmine.Core.Redmine.Parsers;
 using Bugmine.Core.Repositories;
 using Bugmine.Core.Repositories.Contracts;
@@ -58,6 +59,7 @@ namespace Bugmine.UI
 			Container.RegisterType<INavigationController, NavigationController>();
 			Container.RegisterType<ITicketService, TicketService>();
 			Container.RegisterType<ITicketRepository, TicketRepository>();
+			Container.RegisterType<ITicketResultMapper, TicketResultMapper>();
 			Container.RegisterType<ITicketMapper, TicketMapper>();
 
 
