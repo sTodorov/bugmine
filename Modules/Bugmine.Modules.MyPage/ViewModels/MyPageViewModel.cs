@@ -53,7 +53,9 @@ namespace Bugmine.Modules.MyPage.ViewModels
 		{
 			var tickets = _ticketService.GetTickets();
 
-			return _mapper.Map(tickets.Values);
+			var mapped = _mapper.Map(tickets.Values);
+
+			return mapped;
 		}
 	}
 }
