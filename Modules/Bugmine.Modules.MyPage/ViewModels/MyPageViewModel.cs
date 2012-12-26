@@ -40,9 +40,8 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			LoadTickets.RegisterAsyncFunction(x => loadTickets())
 				.ToProperty(this, x => x.Tickets);
 
-			//TODO: make this work. call command each 5 seconds
-			//Observable.Timer(TimeSpan.FromSeconds(5), RxApp.DeferredScheduler).Subscribe(c => LoadTickets.Execute(null));
-			//.InvokeCommand(LoadTickets);
+			Observable.Interval(TimeSpan.FromSeconds(30))
+				.Subscribe(_ => LoadTickets.Execute(null));
 
 			LoadTickets.Execute(null);
 		}
