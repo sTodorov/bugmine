@@ -16,9 +16,9 @@ namespace Bugmine.Core.Models
 
 		public string Status { get; set; }
 
-		public decimal EstimatedHours { get; set; }
+		public decimal? EstimatedHours { get; set; }
 
-		public decimal LoggedHours { get; set; }
+		public decimal? LoggedHours { get; set; }
 
 		public DateTime? DueDate { get; set; }
 

@@ -16,9 +16,9 @@ namespace Bugmine.Modules.MyPage.Models
 
 		public DateTime? DueDate { get; set; }
 
-		public TimeSpan? EstimatedTime { get; set; }
+		public decimal? EstimatedTime { get; set; }
 
-		public TimeSpan SpentTime { get; set; }
+		public decimal? SpentTime { get; set; }
 
 		public TimeSpan SpentTimeUnCommited { get; set; }
 
