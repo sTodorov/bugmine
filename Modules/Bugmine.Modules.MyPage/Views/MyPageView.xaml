@@ -14,6 +14,7 @@
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="50"></ColumnDefinition>
 						<ColumnDefinition Width="400"></ColumnDefinition>
+						<ColumnDefinition Width="300"></ColumnDefinition>
 						<ColumnDefinition Width="150"></ColumnDefinition>
 						<ColumnDefinition Width="100"></ColumnDefinition>
 						<ColumnDefinition Width="100"></ColumnDefinition>
@@ -23,10 +24,11 @@
 					</Grid.ColumnDefinitions>
 					<TextBlock Grid.Column="0" Text="{Binding Path=TicketNumber}" />
 					<TextBlock Grid.Column="1" Text="{Binding Path=Name}" />
-					<TextBlock Grid.Column="2" Text="{Binding Path=Status}" />
-					<TextBlock Grid.Column="3" Text="{Binding Path=DueDate, StringFormat={}{0: dd/MM/yyyy}}"/>
-					<TextBlock Grid.Column="4" Text="{Binding Path=EstimatedTime}"/>
-					<TextBlock Grid.Column="5" Text="{Binding Path=SpentTime}"/>
+					<TextBlock Grid.Column="2" Text="{Binding Path=Project}" />
+					<TextBlock Grid.Column="3" Text="{Binding Path=Status}" />
+					<TextBlock Grid.Column="4" Text="{Binding Path=DueDate, StringFormat={}{0: dd/MM/yyyy}}"/>
+					<TextBlock Grid.Column="5" Text="{Binding Path=EstimatedTime}"/>
+					<TextBlock Grid.Column="6" Text="{Binding Path=SpentTime}"/>
 				</Grid>
 			</DataTemplate>
 		</ItemsControl.ItemTemplate>		
