@@ -15,21 +15,21 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Border BorderBrush="#B3D962" BorderThickness="1"  Background="#E1F2BB" Margin="20">
+                <Border BorderBrush="#B3D962" BorderThickness="1"  Background="#E1F2BB" Margin="0 0 10 5" Width="200">
                     <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Path=TicketNumber}" Grid.Row="0"/>
-                    <TextBlock Text="{Binding Path=Name}" Grid.Row="1"/>
-                    <TextBlock Text="{Binding Path=Project}" Grid.Row="2"/>
-                    <TextBlock Text="{Binding Path=Status}" Grid.Row="3"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Path=TicketNumber}" Grid.Row="0"/>
+                        <TextBlock Text="{Binding Path=Name}" Grid.Row="1"/>
+                        <TextBlock Text="{Binding Path=Project}" Grid.Row="2"/>
+                        <TextBlock Text="{Binding Path=Status}" Grid.Row="3"/>
 
                     </Grid>
                 </Border>
