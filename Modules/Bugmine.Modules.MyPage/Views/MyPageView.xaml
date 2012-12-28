@@ -7,20 +7,35 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
 
-	<ItemsControl ItemsSource="{Binding Tickets}" Margin="10">
-		<ItemsControl.ItemsPanel>
-			<ItemsPanelTemplate>
-				<WrapPanel Width="700" Orientation="Horizontal" IsItemsHost="True"/>
-			</ItemsPanelTemplate>
-		</ItemsControl.ItemsPanel>
-		<ItemsControl.ItemTemplate>
-			<DataTemplate>
-				<Border Background="red" Margin="20">
-					<TextBlock Text="{Binding Path=TicketNumber}" />
-				</Border>
-			</DataTemplate>
-		</ItemsControl.ItemTemplate>
-	</ItemsControl>
+    <ItemsControl ItemsSource="{Binding Tickets}" Margin="10">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Width="700" Orientation="Horizontal" IsItemsHost="True"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Border BorderBrush="#B3D962" BorderThickness="1"  Background="#E1F2BB" Margin="20">
+                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Path=TicketNumber}" Grid.Row="0"/>
+                    <TextBlock Text="{Binding Path=Name}" Grid.Row="1"/>
+                    <TextBlock Text="{Binding Path=Project}" Grid.Row="2"/>
+                    <TextBlock Text="{Binding Path=Status}" Grid.Row="3"/>
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>
 
 <!--<Grid>
