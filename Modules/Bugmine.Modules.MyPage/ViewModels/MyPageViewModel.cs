@@ -47,16 +47,16 @@ namespace Bugmine.Modules.MyPage.ViewModels
 				.ToProperty(this, x => x.Tickets);
 
 			Observable.Interval(TimeSpan.FromSeconds(10), RxApp.DeferredScheduler)
-				.Subscribe(_ =>
-				{
-					Debug.WriteLine("Loading tickets from interval");
-					Debug.WriteLine("Can Execute in interval " + LoadTickets.CanExecute(null).ToString());
-			LoadTickets.Execute(null);
-				});
+					.Subscribe(_ =>
+									Debug.WriteLine("Can execute in timer " + LoadTickets.CanExecute(null))
+									);
 
-			Debug.WriteLine("Can Execute " + LoadTickets.CanExecute(null).ToString());
+			///.InvokeCommand(LoadTickets);
+
+			Debug.WriteLine("Can execute : " + LoadTickets.CanExecute(this));
 			LoadTickets.Execute(null);
-			Debug.WriteLine("Loaded Tickets");
+			Debug.WriteLine("Can execute after execution: " + LoadTickets.CanExecute(this));
+
 		}
 
 		public ReactiveAsyncCommand LoadTickets { get; private set; }
