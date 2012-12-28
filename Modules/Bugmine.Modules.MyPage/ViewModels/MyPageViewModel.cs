@@ -28,7 +28,6 @@ namespace Bugmine.Modules.MyPage.ViewModels
 				}
 			}
 		}
-
 		private ObservableAsPropertyHelper<List<TicketModel>> _Tickets;
 
 		private ITicketService _ticketService;
@@ -42,23 +41,31 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			_ticketService = ticketService;
 			_mapper = mapper;
 
-			LoadTickets = new ReactiveAsyncCommand(null, 0);
+			LoadTickets = new ReactiveAsyncCommand(null, 0, RxApp.DeferredScheduler);
 
 			LoadTickets.RegisterAsyncFunction(x => loadTickets())
 				.ToProperty(this, x => x.Tickets);
 
 			Observable.Interval(TimeSpan.FromSeconds(10), RxApp.DeferredScheduler)
-				.Subscribe(_ => LoadTickets.Execute(null));
-
+				.Subscribe(_ =>
+				{
+					Debug.WriteLine("Loading tickets from interval");
+					Debug.WriteLine("Can Execute in interval " + LoadTickets.CanExecute(null).ToString());
 			LoadTickets.Execute(null);
+				});
+
+			Debug.WriteLine("Can Execute " + LoadTickets.CanExecute(null).ToString());
+			LoadTickets.Execute(null);
+			Debug.WriteLine("Loaded Tickets");
 		}
 
 		public ReactiveAsyncCommand LoadTickets { get; private set; }
 
 		private List<TicketModel> loadTickets()
 		{
+			Debug.WriteLine("loadTickets");
 			var tickets = _ticketService.GetTickets();
-			Debug.WriteLine("Loaded Tickets");
+
 			var mapped = _mapper.Map(tickets.Values);
 
 			return mapped;
