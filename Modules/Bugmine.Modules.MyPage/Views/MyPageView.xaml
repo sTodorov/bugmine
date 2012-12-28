@@ -6,11 +6,24 @@
 						 xmlns:local="clr-namespace:Bugmine.Modules.MyPage.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-	
-		<ItemsControl ItemsSource="{Binding Tickets}" Margin="10">
+
+	<ItemsControl ItemsSource="{Binding Tickets}" Margin="10">
+		<ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+				<WrapPanel Width="700" Orientation="Horizontal" IsItemsHost="True"/>
+			</ItemsPanelTemplate>
+		</ItemsControl.ItemsPanel>
 		<ItemsControl.ItemTemplate>
 			<DataTemplate>
-				<Grid>
+				<Border Background="red" Margin="20">
+					<TextBlock Text="{Binding Path=TicketNumber}" />
+				</Border>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+	</ItemsControl>
+</UserControl>
+
+<!--<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="50"></ColumnDefinition>
 						<ColumnDefinition Width="400"></ColumnDefinition>
@@ -29,8 +42,4 @@
 					<TextBlock Grid.Column="4" Text="{Binding Path=DueDate, StringFormat={}{0: dd/MM/yyyy}}"/>
 					<TextBlock Grid.Column="5" Text="{Binding Path=EstimatedTime}"/>
 					<TextBlock Grid.Column="6" Text="{Binding Path=SpentTime}"/>
-				</Grid>
-			</DataTemplate>
-		</ItemsControl.ItemTemplate>		
-	</ItemsControl>	
-</UserControl>
+				</Grid>-->
