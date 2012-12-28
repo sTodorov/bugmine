@@ -40,5 +40,11 @@ namespace Bugmine.Core.Repositories
 				}
 			}
 		}
+
+
+		public Page<TicketEntry> GetTicketEntries(int ticketID)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
