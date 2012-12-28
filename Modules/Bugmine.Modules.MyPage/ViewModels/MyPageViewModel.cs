@@ -20,7 +20,13 @@ namespace Bugmine.Modules.MyPage.ViewModels
 		public List<TicketModel> Tickets
 		{
 			get { return _Tickets.Value; }
-			set { this.RaiseAndSetIfChanged(c => c.Tickets, value); }
+			set
+			{
+				{
+					Debug.WriteLine("Setter of Tickets called");
+					this.RaiseAndSetIfChanged(c => c.Tickets, value);
+				}
+			}
 		}
 
 		private ObservableAsPropertyHelper<List<TicketModel>> _Tickets;
@@ -52,7 +58,7 @@ namespace Bugmine.Modules.MyPage.ViewModels
 		private List<TicketModel> loadTickets()
 		{
 			var tickets = _ticketService.GetTickets();
-
+			Debug.WriteLine("Loaded Tickets");
 			var mapped = _mapper.Map(tickets.Values);
 
 			return mapped;
