@@ -51,8 +51,6 @@ namespace Bugmine.Modules.MyPage.ViewModels
 									Debug.WriteLine("Can execute in timer " + LoadTickets.CanExecute(null))
 									);
 
-			///.InvokeCommand(LoadTickets);
-
 			Debug.WriteLine("Can execute : " + LoadTickets.CanExecute(this));
 			LoadTickets.Execute(null);
 			Debug.WriteLine("Can execute after execution: " + LoadTickets.CanExecute(this));
