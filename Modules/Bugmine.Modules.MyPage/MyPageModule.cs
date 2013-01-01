@@ -21,7 +21,7 @@ namespace Bugmine.Modules.MyPage
 
 		public void Initialize()
 		{
-			//_regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(MyPageView));
+
 		}
 	}
 }
