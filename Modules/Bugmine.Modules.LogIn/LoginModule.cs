@@ -23,7 +23,7 @@ namespace Bugmine.Modules.LogIn
 
 		public void Initialize()
 		{
-			_regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(LoginView));
+			//_regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(LoginView));
 		}
 	}
 }
