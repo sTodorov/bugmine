@@ -19,5 +19,14 @@ namespace Bugmine.Core.Tests
 			var s = "Dog";
 			Assert.AreEqual("Do", s.Cap(2));
 		}
+
+		[TestMethod]
+		public void String_Cap_With_Cap_Symbol()
+		{
+			var s = "The lazy dog jumped over the brown midget.";
+			Assert.AreEqual("The...", s.Cap(3, "..."));
+		}
+
+
 	}
 }
