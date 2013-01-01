@@ -56,7 +56,6 @@ namespace Bugmine.Modules.MyPage.ViewModels
 
 		private List<TicketModel> loadTickets()
 		{
-			Debug.WriteLine("loadTickets");
 			var tickets = _ticketService.GetTickets();
 
 			var mapped = _mapper.Map(tickets.Values);
