@@ -37,7 +37,6 @@ namespace Bugmine.Core.Configuration
 			if (userElement == null) throw new InvalidOperationException("Api key element is not defined");
 
 			return userElement.Value;
-
 		}
 
 		public static void SetApiKey(string key)
