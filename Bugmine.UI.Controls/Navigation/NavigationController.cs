@@ -27,5 +27,14 @@ namespace Bugmine.UI.Controls.Navigation
 			}
 			_regionManager.RequestNavigate(RegionNames.MainRegion, new Uri(ViewNames.MyPageView, UriKind.Relative));
 		}
+
+		public void NavigateToLoginView()
+		{
+			foreach (var view in _regionManager.Regions[RegionNames.MainRegion].Views)
+			{
+				_regionManager.Regions[RegionNames.MainRegion].Remove(view);
+			}
+			_regionManager.RequestNavigate(RegionNames.MainRegion, new Uri(ViewNames.LoginView, UriKind.Relative));
+		}
 	}
 }

@@ -66,6 +66,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\CappedStringConverter.cs" />
     <Compile Include="Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
     </Compile>
@@ -83,6 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bugmine.Core\Bugmine.Core.csproj">
+      <Project>{790f09a3-0c20-4160-8527-78510ccfd891}</Project>
+      <Name>Bugmine.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

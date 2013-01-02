@@ -84,5 +84,20 @@ namespace Bugmine.UI
 		{
 			ApplicationData.Initialize();
 		}
+
+		public override void Run(bool runWithDefaultConfiguration)
+		{
+			base.Run(runWithDefaultConfiguration);
+
+			//determine which view to navigate to
+			var hasLoggedInBefore = !string.IsNullOrEmpty(ApplicationData.GetApiKey());
+
+			var navController = Container.Resolve<INavigationController>();
+			
+			if (hasLoggedInBefore)
+				navController.NavigateToMainView();
+			else
+				navController.NavigateToLoginView();
+		}
 	}
 }

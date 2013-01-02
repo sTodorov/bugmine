@@ -41,27 +41,20 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			_ticketService = ticketService;
 			_mapper = mapper;
 
-			LoadTickets = new ReactiveAsyncCommand(null, 0, RxApp.DeferredScheduler);
+			LoadTickets = new ReactiveAsyncCommand(null, 1, RxApp.DeferredScheduler);
 
 			LoadTickets.RegisterAsyncFunction(x => loadTickets())
 				.ToProperty(this, x => x.Tickets);
 
 			Observable.Interval(TimeSpan.FromSeconds(10), RxApp.DeferredScheduler)
-					.Subscribe(_ =>
-									Debug.WriteLine("Can execute in timer " + LoadTickets.CanExecute(null))
-									);
-
-			Debug.WriteLine("Can execute : " + LoadTickets.CanExecute(this));
+					.InvokeCommand(LoadTickets);
 			LoadTickets.Execute(null);
-			Debug.WriteLine("Can execute after execution: " + LoadTickets.CanExecute(this));
-
 		}
 
 		public ReactiveAsyncCommand LoadTickets { get; private set; }
 
 		private List<TicketModel> loadTickets()
 		{
-			Debug.WriteLine("loadTickets");
 			var tickets = _ticketService.GetTickets();
 
 			var mapped = _mapper.Map(tickets.Values);
