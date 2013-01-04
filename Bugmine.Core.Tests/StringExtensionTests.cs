@@ -10,7 +10,7 @@ namespace Bugmine.Core.Tests
 		public void String_Cap_With_Bigger_Lenght()
 		{
 			var s = "Dog";
-			Assert.AreEqual("Dog", s.Cap(4));
+			Assert.AreEqual("Dog", s.Cap(4, "..."));
 		}
 
 		[TestMethod]
@@ -26,7 +26,5 @@ namespace Bugmine.Core.Tests
 			var s = "The lazy dog jumped over the brown midget.";
 			Assert.AreEqual("The...", s.Cap(3, "..."));
 		}
-
-
 	}
 }

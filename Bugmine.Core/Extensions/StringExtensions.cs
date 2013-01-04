@@ -26,7 +26,13 @@ namespace System
 		{
 			if (string.IsNullOrEmpty(instance)) return instance;
 
-			return instance.Substring(0, Math.Min(charCap, instance.Length)) + capSymbol;
+			var smallerRange = Math.Min(charCap, instance.Length);
+			var cap = instance.Substring(0, smallerRange);
+
+			if (smallerRange < instance.Length) //capped
+				return cap + capSymbol;
+
+			return cap;
 		}
 	}
 }
