@@ -23,5 +23,7 @@ namespace Bugmine.Modules.MyPage.Models
 		public TimeSpan SpentTimeUnCommited { get; set; }
 
 		public string Project { get; set; }
+
+		public Uri TicketUrl { get; set; }
 	}
 }
