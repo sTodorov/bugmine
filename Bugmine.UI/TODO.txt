@@ -1,7 +1,6 @@
 ﻿todo
 =====
 
-
 1. add module for time tracking - toastr
 2. display estimated time, spent time, spent time not commited on my page.
 3. alert when spent time + not comitted >= estimated time

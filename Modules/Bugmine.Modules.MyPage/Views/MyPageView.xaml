@@ -47,7 +47,7 @@
                             <TextBlock Text="{Binding Path=SpentTime, Converter={StaticResource nullableConverter}}"/>
 
                             <TextBlock Margin="5 0 5 0">
-                                <Hyperlink NavigateUri="{Binding Path=TicketUrl}">
+                                <Hyperlink NavigateUri="{Binding Path=TicketUrl}" RequestNavigate="Hyperlink_RequestNavigate_1">
                                     Redmine
                                 </Hyperlink>
                             </TextBlock>

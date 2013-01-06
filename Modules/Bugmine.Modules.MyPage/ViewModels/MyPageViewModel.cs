@@ -67,7 +67,7 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			//todo: better way of doing this
 			foreach (var entry in mapped)
 			{
-				entry.TicketUrl = new Uri(_redmineBaseUrl + entry.TicketNumber);
+				entry.TicketUrl = new Uri(_redmineBaseUrl + "issues/" + entry.TicketNumber);
 			}
 
 			return mapped;
