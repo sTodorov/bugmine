@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Bugmine.Modules.MyPage.ViewModels
 {
 	public class MyPageViewModel : ReactiveValidatedObject
 	{
+		private string _redmineBaseUrl;
+
 		public List<TicketModel> Tickets
 		{
 			get { return _Tickets.Value; }
@@ -49,6 +52,8 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			Observable.Interval(TimeSpan.FromSeconds(10), RxApp.DeferredScheduler)
 					.InvokeCommand(LoadTickets);
 			LoadTickets.Execute(null);
+
+			_redmineBaseUrl = ConfigurationManager.AppSettings["Redmine.BaseRedmineUrl"];
 		}
 
 		public ReactiveAsyncCommand LoadTickets { get; private set; }
@@ -58,6 +63,12 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			var tickets = _ticketService.GetTickets();
 
 			var mapped = _mapper.Map(tickets.Values);
+
+			//todo: better way of doing this
+			foreach (var entry in mapped)
+			{
+				entry.TicketUrl = new Uri(_redmineBaseUrl + "issues/" + entry.TicketNumber);
+			}
 
 			return mapped;
 		}

@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\CappedStringConverter.cs" />
+    <Compile Include="Converters\NullableDecimalCoverter.cs" />
     <Compile Include="Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
     </Compile>
