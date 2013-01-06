@@ -55,7 +55,7 @@
     <Compile Include="Redmine\Mappers\ITicketResultMapper.cs" />
     <Compile Include="Redmine\Mappers\TicketResultMapper.cs" />
     <Compile Include="Redmine\Parsers\Parser.cs" />
-    <Compile Include="Redmine\RedmineUrls.cs" />
+    <Compile Include="Redmine\RedmineUrlManager.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\Ticket.cs" />

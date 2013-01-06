@@ -12,7 +12,7 @@ namespace Bugmine.Core.Repositories
 	{
 		public bool isUserValid(string apiKey)
 		{
-			var request = ConstructWebRequest("issues.xml", apiKey);
+			var request = ConstructRedmineRequest(RedmineUrlManager.GetTicketsUrl(), apiKey);
 
 			using (var response = request.GetResponse())
 			{

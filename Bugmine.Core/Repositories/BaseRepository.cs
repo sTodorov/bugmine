@@ -5,21 +5,23 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Bugmine.Core.Redmine;
 
 namespace Bugmine.Core.Repositories
 {
 	public class BaseRepository
 	{
 		private Uri baseUri;
+		protected RedmineUrlManager RedmineUrlManager;
 
 		public BaseRepository()
 		{
-			baseUri = new Uri(ConfigurationManager.AppSettings["Redmine.BaseRedmineUrl"]);
+			RedmineUrlManager = new RedmineUrlManager();
 		}
 
-		protected HttpWebRequest ConstructWebRequest(string relativeUrl, string apiKey)
+		protected HttpWebRequest ConstructRedmineRequest(Uri redmineUri, string apiKey)
 		{
-			var request = (HttpWebRequest)WebRequest.Create(new Uri(baseUri, relativeUrl));
+			var request = (HttpWebRequest)WebRequest.Create(redmineUri);
 			request.Headers.Add("X-Redmine-API-Key", apiKey);
 
 			return request;

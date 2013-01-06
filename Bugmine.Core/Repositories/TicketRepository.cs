@@ -26,7 +26,7 @@ namespace Bugmine.Core.Repositories
 
 		public Page<Models.Ticket> GetTickets(int userID, string apiKey)
 		{
-			var request = ConstructWebRequest(string.Format("{0}?assigned_to_id={1};limit=15000", RedmineUrls.tickets, userID), apiKey);
+			var request = ConstructRedmineRequest(RedmineUrlManager.GetTicketsUrl(new { assigned_to_id = userID, limit = 15000 }), apiKey);
 
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			{
