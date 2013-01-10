@@ -15,8 +15,6 @@
 		</Label>
 		<TextBox Height="33"  x:Name="apiKey" HorizontalAlignment="Left" Margin="156,220,-56,0" VerticalAlignment="Top" Width="247" Text="{Binding LoginKey, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#FFBFD989" SelectionBrush="#FFBFD989">
 		 </TextBox>
-		<TextBlock HorizontalAlignment="Left" Margin="10,269,0,0" Text="User ID" VerticalAlignment="Top" FontSize="32" Foreground="#FFBFD989" />
-		<TextBox Height="32" HorizontalAlignment="Left" Margin="156,280,-56,0" VerticalAlignment="Top" Width="247" Text="{Binding UserID, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#FFBFD989" SelectionBrush="#FFBFD989"/>
 		<Button Content="Login" Height="67" HorizontalAlignment="Left" Margin="156,379,0,0" VerticalAlignment="Top" Width="247" Command="{Binding LoginCommand}"/>
 		<TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="100,451,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
 	</Grid>

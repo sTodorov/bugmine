@@ -20,5 +20,10 @@ namespace Bugmine.Core.Repositories
 				return true;
 			}
 		}
-	}
+
+    public int GetUserID(string apiKey)
+    {
+      throw new NotImplementedException();
+    }
+  }
 }

@@ -9,5 +9,7 @@ namespace Bugmine.Core.Repositories.Contracts
 	public interface IUserRepository
 	{
 		bool isUserValid(string apiKey);
-	}
+
+    int GetUserID(string apiKey);
+  }
 }

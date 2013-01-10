@@ -9,34 +9,37 @@ using Bugmine.Core.Repositories.Contracts;
 
 namespace Bugmine.Core.Services
 {
-	public class UserService : IUserService
-	{
-		private IUserRepository _userRepository;
+  public class UserService : IUserService
+  {
+    private IUserRepository _userRepository;
 
-		public UserService(IUserRepository userRepo)
-		{
-			_userRepository = userRepo;
-		}
+    public UserService(IUserRepository userRepo)
+    {
+      _userRepository = userRepo;
+    }
 
-		public bool CheckAndLoginIfValid(string apiKey, int userID)
-		{
-			apiKey.ThrowIfNullOrEmpty();
-			try
-			{
-				var isValid = _userRepository.isUserValid(apiKey);
+    public bool CheckAndLoginIfValid(string apiKey)
+    {
+      apiKey.ThrowIfNullOrEmpty();
+      try
+      {
+        var isValid = _userRepository.isUserValid(apiKey);
 
-				if (isValid)
-				{
-					ApplicationData.SetApiKey(apiKey);
-					ApplicationData.SetUserID(userID);
-				}
+        if (isValid)
+        {
+          ApplicationData.SetApiKey(apiKey);
 
-				return true;
-			}
-			catch (Exception)
-			{
-				return false;
-			}
-		}
-	}
+          //retrieve the user id
+          int userID = _userRepository.GetUserID(apiKey);
+          ApplicationData.SetUserID(userID);
+        }
+
+        return true;
+      }
+      catch (Exception)
+      {
+        return false;
+      }
+    }
+  }
 }

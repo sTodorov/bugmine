@@ -28,13 +28,7 @@ namespace Bugmine.Modules.LogIn.ViewModels
 			get { return _LoginKey; }
 			set { this.RaiseAndSetIfChanged(c => c.LoginKey, value); }
 		}
-
-		private int? _UserID;
-		public int? UserID
-		{
-			get { return _UserID; }
-			set { this.RaiseAndSetIfChanged(c => c.UserID, value); }
-		}
+		
 
 
 		private ReactiveCommand _loginCommand;
@@ -51,8 +45,8 @@ namespace Bugmine.Modules.LogIn.ViewModels
 			_regionManager = regionManager;
 			_userService = userService;
 			_navigation = navigationController;
-			_loginCommand = new ReactiveCommand(this.WhenAny(c => c.LoginKey, c => c.UserID,
-																													 (key, id) => !string.IsNullOrEmpty(key.Value) && id.Value.HasValue));
+			_loginCommand = new ReactiveCommand(this.WhenAny(c => c.LoginKey, 
+																													 (key) => !string.IsNullOrEmpty(key.Value) ));
 
 
 			_loginCommand.Subscribe(_ => Login());
@@ -63,7 +57,7 @@ namespace Bugmine.Modules.LogIn.ViewModels
 		{
 			try
 			{
-				var isValid = _userService.CheckAndLoginIfValid(LoginKey, UserID.Value);
+				var isValid = _userService.CheckAndLoginIfValid(LoginKey);
 				_navigation.NavigateToMainView();
 			}
 			catch (Exception e)
