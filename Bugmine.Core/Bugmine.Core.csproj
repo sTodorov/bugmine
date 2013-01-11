@@ -52,6 +52,7 @@
     <Compile Include="Configuration\ApplicationData.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\TicketEntry.cs" />
+    <Compile Include="Redmine\CurrentUserResult.cs" />
     <Compile Include="Redmine\Mappers\ITicketResultMapper.cs" />
     <Compile Include="Redmine\Mappers\TicketResultMapper.cs" />
     <Compile Include="Redmine\Parsers\Parser.cs" />

@@ -36,7 +36,7 @@ namespace Bugmine.Core.Services
 
         return true;
       }
-      catch (Exception)
+      catch (Exception e)
       {
         return false;
       }

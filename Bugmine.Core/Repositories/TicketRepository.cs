@@ -34,7 +34,7 @@ namespace Bugmine.Core.Repositories
 				{
 					string json = reader.ReadToEnd();
 
-					var tickets = Parser.ParseTickets(json);
+					var tickets = Parser.ParseTicketsResult(json);
 
 					return _ticketMapper.MapFromTicketResult(tickets);
 				}
@@ -44,7 +44,7 @@ namespace Bugmine.Core.Repositories
 
 		public Page<TicketEntry> GetTicketEntries(int ticketID)
 		{
-			throw new NotImplementedException();
+      throw new NotImplementedException();
 		}
 	}
 }
