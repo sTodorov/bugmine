@@ -1,0 +1,9 @@
+﻿todo
+=====
+
+Unit testing (login flow, exception flow, happy flow)
+Add module for time tracking - toastr
+Alert when spent time + not comitted >= estimated time
+Exception handling in the repositories
+Filtering on the my page view on : project, tracker
+Ordering on the my page view on : due date, project, tracker, alll fields in model	

@@ -7,11 +7,16 @@ using ServiceStack.Text;
 
 namespace Bugmine.Core.Redmine.Parsers
 {
-	public static class Parser
-	{
-		public static TicketsResult ParseTickets(string tickets)
-		{
-			return tickets.FromJson<TicketsResult>();
-		}
-	}
+  public static class Parser
+  {
+    internal static TicketsResult ParseTicketsResult(string tickets)
+    {
+      return tickets.FromJson<TicketsResult>();
+    }
+
+    public static CurrentUserResult ParseCurrentUserResult(string userInfo)
+    {
+      return userInfo.FromJson<CurrentUserResult>();
+    }
+  }
 }
