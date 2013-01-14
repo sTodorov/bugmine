@@ -14,7 +14,7 @@ namespace Bugmine.Core.Redmine
 		private Uri _baseUrl;
 		private const string issuesJsonUrl = "issues.json";
 		private const string issuesUrl = "issues";
-
+		private const string currentUserUrl = "users/current.json";
 
 		public RedmineUrlManager()
 		{
@@ -37,6 +37,11 @@ namespace Bugmine.Core.Redmine
 		public Uri GetRedmineTicketUrl(int ticketID)
 		{
 			return new Uri(_baseUrl, string.Format("{0}/{1}", issuesUrl, ticketID));
+		}
+
+		public Uri GetCurrentUserUrl()
+		{
+			return new Uri(_baseUrl, currentUserUrl);
 		}
 
 		private string ConstructQueryString(object @params)
