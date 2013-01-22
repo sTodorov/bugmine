@@ -18,11 +18,9 @@ namespace Bugmine.Core.Repositories
 
 			using (var response = request.GetResponse())
 			{
-				//will throw exception if user is not valid
 				return true;
 			}
 		}
-
 
 		public int GetUserID(string apiKey)
 		{
