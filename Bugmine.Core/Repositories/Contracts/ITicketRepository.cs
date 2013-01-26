@@ -11,6 +11,6 @@ namespace Bugmine.Core.Repositories.Contracts
 	{
 		Page<Ticket> GetTickets(int userID, string apiKey);
 
-		Page<TicketEntry> GetTicketEntries(int ticketID);
+		List<TicketEntry> GetTicketEntries(int ticketID, string apiKey);
 	}
 }

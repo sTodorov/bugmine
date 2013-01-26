@@ -28,76 +28,77 @@ using Microsoft.Practices.Unity;
 
 namespace Bugmine.UI
 {
-	public class Bootstrapper : UnityBootstrapper
-	{
+  public class Bootstrapper : UnityBootstrapper
+  {
 
-		protected override System.Windows.DependencyObject CreateShell()
-		{
-			return new Shell();
-		}
+    protected override System.Windows.DependencyObject CreateShell()
+    {
+      return new Shell();
+    }
 
-		public Bootstrapper()
-			: base()
-		{
-			InitializeAppDataFile();
-		}
+    public Bootstrapper()
+      : base()
+    {
+      InitializeAppDataFile();
+    }
 
-		protected override void InitializeShell()
-		{
-			base.InitializeShell();
+    protected override void InitializeShell()
+    {
+      base.InitializeShell();
 
-			App.Current.MainWindow = (Window)this.Shell;
-			App.Current.MainWindow.Show();
-		}
+      App.Current.MainWindow = (Window)this.Shell;
+      App.Current.MainWindow.Show();
+    }
 
-		protected override void ConfigureContainer()
-		{
-			base.ConfigureContainer();
+    protected override void ConfigureContainer()
+    {
+      base.ConfigureContainer();
 
-			Container.RegisterType<IUserService, UserService>();
-			Container.RegisterType<IUserRepository, UserRepository>();
-			Container.RegisterType<INavigationController, NavigationController>();
-			Container.RegisterType<ITicketService, TicketService>();
-			Container.RegisterType<ITicketRepository, TicketRepository>();
-			Container.RegisterType<ITicketResultMapper, TicketResultMapper>();
-			Container.RegisterType<ITicketMapper, TicketMapper>();
+      Container.RegisterType<IUserService, UserService>();
+      Container.RegisterType<IUserRepository, UserRepository>();
+      Container.RegisterType<INavigationController, NavigationController>();
+      Container.RegisterType<ITicketService, TicketService>();
+      Container.RegisterType<ITicketRepository, TicketRepository>();
+      Container.RegisterType<ITicketResultMapper, TicketResultMapper>();
+      Container.RegisterType<ITicketEntryResultMapper, TicketEntryResultMapper>();
+      Container.RegisterType<ITicketMapper, TicketMapper>();
 
 
-			Container.RegisterType<object, LoginViewModel>();
-			Container.RegisterType<object, MyPageViewModel>();
+      Container.RegisterType<object, LoginViewModel>();
+      Container.RegisterType<object, MyPageViewModel>();
 
-			Container.RegisterType<object, LoginView>(ViewNames.LoginView);
-			Container.RegisterType<object, MyPageView>(ViewNames.MyPageView);
+      Container.RegisterType<object, LoginView>(ViewNames.LoginView);
+      Container.RegisterType<object, MyPageView>(ViewNames.MyPageView);
 
-		}
+    }
 
-		protected override void ConfigureModuleCatalog()
-		{
-			base.ConfigureModuleCatalog();
+    protected override void ConfigureModuleCatalog()
+    {
+      base.ConfigureModuleCatalog();
 
-			ModuleCatalog catalog = (ModuleCatalog)this.ModuleCatalog;
-			catalog.AddModule(typeof(LoginModule));
-			catalog.AddModule(typeof(MyPageModule));
-		}
+      ModuleCatalog catalog = (ModuleCatalog)this.ModuleCatalog;
+      catalog.AddModule(typeof(LoginModule));
+      catalog.AddModule(typeof(MyPageModule));
+    }
 
-		private void InitializeAppDataFile()
-		{
-			ApplicationData.Initialize();
-		}
+    private void InitializeAppDataFile()
+    {
+      ApplicationData.Initialize();
+    }
 
-		public override void Run(bool runWithDefaultConfiguration)
-		{
-			base.Run(runWithDefaultConfiguration);
+    public override void Run(bool runWithDefaultConfiguration)
+    {
+      base.Run(runWithDefaultConfiguration);
 
-			//determine which view to navigate to
-			var hasLoggedInBefore = !string.IsNullOrEmpty(ApplicationData.GetApiKey());
+      //determine which view to navigate to
+      var hasLoggedInBefore = !string.IsNullOrEmpty(ApplicationData.GetApiKey());
 
-			var navController = Container.Resolve<INavigationController>();
-			
-			if (hasLoggedInBefore)
-				navController.NavigateToMainView();
-			else
-				navController.NavigateToLoginView();
-		}
-	}
+      var navController = Container.Resolve<INavigationController>();
+
+      if (hasLoggedInBefore)
+        navController.NavigateToMainView();
+      else
+        navController.NavigateToLoginView();
+    }
+  }
 }

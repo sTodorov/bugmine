@@ -1,6 +1,11 @@
 ﻿todo
 =====
 
+
+Abstract the time entry functionality - it might not require a separate call to the server for the time entries. Hide in the repo.
+Split up the url manager - urls separate from commands
+
+Parallel ticket showing?
 Unit testing (login flow, exception flow, happy flow)
 Add module for time tracking - toastr
 Alert when spent time + not comitted >= estimated time

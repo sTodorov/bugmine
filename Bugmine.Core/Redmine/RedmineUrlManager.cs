@@ -9,47 +9,61 @@ using System.Web;
 
 namespace Bugmine.Core.Redmine
 {
-	public class RedmineUrlManager
-	{
-		private Uri _baseUrl;
-		private const string issuesJsonUrl = "issues.json";
-		private const string issuesUrl = "issues";
-		private const string currentUserUrl = "users/current.json";
+  public class RedmineUrlManager
+  {
+    private Uri _baseUrl;
+    private const string issuesJsonUrl = "issues.json";
+    private const string issuesUrl = "issues";
+    private const string currentUserUrl = "users/current.json";
+    private const string timeEntryUrl = "time_entries.json";
 
-		public RedmineUrlManager()
-		{
-			_baseUrl = new Uri(ConfigurationManager.AppSettings["Redmine.BaseRedmineUrl"]);
-		}
+    public RedmineUrlManager()
+    {
+      _baseUrl = new Uri(ConfigurationManager.AppSettings["Redmine.BaseRedmineUrl"]);
+    }
 
-		public Uri GetTicketsUrl(object @params = null)
-		{
-			Uri uri = null;
-			string relativeUrl = issuesJsonUrl;
+    public Uri GetTicketsUrl(object @params = null)
+    {
+      Uri uri = null;
+      string relativeUrl = issuesJsonUrl;
 
-			if (@params != null)
-				relativeUrl = relativeUrl + "?" + ConstructQueryString(@params);
+      if (@params != null)
+        relativeUrl = relativeUrl + "?" + ConstructQueryString(@params);
 
-			Uri.TryCreate(_baseUrl, relativeUrl, out uri);
+      Uri.TryCreate(_baseUrl, relativeUrl, out uri);
 
-			return uri;
-		}
+      return uri;
+    }
 
-		public Uri GetRedmineTicketUrl(int ticketID)
-		{
-			return new Uri(_baseUrl, string.Format("{0}/{1}", issuesUrl, ticketID));
-		}
+    public Uri GetEntryUrl(object @params = null)
+    {
+      Uri uri = null;
+      string relativeUrl = timeEntryUrl;
 
-		public Uri GetCurrentUserUrl()
-		{
-			return new Uri(_baseUrl, currentUserUrl);
-		}
+      if (@params != null)
+        relativeUrl = relativeUrl + "?" + ConstructQueryString(@params);
 
-		private string ConstructQueryString(object @params)
-		{
-			var type = @params.GetType();
-			var props = type.GetProperties();
-			var pairs = props.Select(x => x.Name + "=" + x.GetValue(@params, null)).ToArray();
-			return string.Join("&", pairs);
-		}
-	}
+      Uri.TryCreate(_baseUrl, relativeUrl, out uri);
+
+      return uri;
+    }
+
+    public Uri GetRedmineTicketUrl(int ticketID)
+    {
+      return new Uri(_baseUrl, string.Format("{0}/{1}", issuesUrl, ticketID));
+    }
+
+    public Uri GetCurrentUserUrl()
+    {
+      return new Uri(_baseUrl, currentUserUrl);
+    }
+
+    private string ConstructQueryString(object @params)
+    {
+      var type = @params.GetType();
+      var props = type.GetProperties();
+      var pairs = props.Select(x => x.Name + "=" + x.GetValue(@params, null)).ToArray();
+      return string.Join("&", pairs);
+    }
+  }
 }

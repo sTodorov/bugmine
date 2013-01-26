@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bugmine.Core.Redmine
+namespace Bugmine.Core.Redmine.Results
 {
   public class CurrentUserResult
   {

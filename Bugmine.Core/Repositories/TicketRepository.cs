@@ -15,36 +15,50 @@ using ServiceStack.Text;
 
 namespace Bugmine.Core.Repositories
 {
-	public class TicketRepository : BaseRepository, ITicketRepository
-	{
-		private ITicketResultMapper _ticketMapper;
+  public class TicketRepository : BaseRepository, ITicketRepository
+  {
+    private ITicketResultMapper _ticketMapper;
+    private ITicketEntryResultMapper _ticketResultMapper;
 
-		public TicketRepository(ITicketResultMapper ticketMapper)
-		{
-			_ticketMapper = ticketMapper;
-		}
+    public TicketRepository(ITicketResultMapper ticketMapper, ITicketEntryResultMapper ticketResultMapper)
+    {
+      _ticketMapper = ticketMapper;
+      _ticketResultMapper = ticketResultMapper;
+    }
 
-		public Page<Models.Ticket> GetTickets(int userID, string apiKey)
-		{
-			var request = ConstructRedmineRequest(RedmineUrlManager.GetTicketsUrl(new { assigned_to_id = userID, limit = 15000 }), apiKey);
+    public Page<Models.Ticket> GetTickets(int userID, string apiKey)
+    {
+      var request = ConstructRedmineRequest(RedmineUrlManager.GetTicketsUrl(new { assigned_to_id = userID, limit = 15000 }), apiKey);
 
-			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-			{
-				using (var reader = new StreamReader(response.GetResponseStream()))
-				{
-					string json = reader.ReadToEnd();
+      using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+      {
+        using (var reader = new StreamReader(response.GetResponseStream()))
+        {
+          string json = reader.ReadToEnd();
 
-					var tickets = Parser.ParseTicketsResult(json);
+          var tickets = Parser.ParseTicketsResult(json);
 
-					return _ticketMapper.MapFromTicketResult(tickets);
-				}
-			}
-		}
+          return _ticketMapper.MapFromTicketResult(tickets);
+        }
+      }
+    }
 
 
-		public Page<TicketEntry> GetTicketEntries(int ticketID)
-		{
-      throw new NotImplementedException();
-		}
-	}
+    public List<TicketEntry> GetTicketEntries(int ticketNumber, string apiKey)
+    {
+      var request = ConstructRedmineRequest(RedmineUrlManager.GetEntryUrl(new { limit = 15000, issue_id = ticketNumber }), apiKey);
+
+      using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+      {
+        using (var reader = new StreamReader(response.GetResponseStream()))
+        {
+          string json = reader.ReadToEnd();
+
+          var tickets = Parser.ParseTicketEntries(json);
+
+          return _ticketResultMapper.MapFromTicketEntryResult(tickets);
+        }
+      }
+    }
+  }
 }

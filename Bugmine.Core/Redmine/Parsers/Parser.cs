@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bugmine.Core.Redmine.Results;
 using ServiceStack.Text;
 
 namespace Bugmine.Core.Redmine.Parsers
@@ -17,6 +18,11 @@ namespace Bugmine.Core.Redmine.Parsers
     public static CurrentUserResult ParseCurrentUserResult(string userInfo)
     {
       return userInfo.FromJson<CurrentUserResult>();
+    }
+
+    public static TicketEntriesResult ParseTicketEntries(string ticketEntries)
+    {
+      return ticketEntries.FromJson<TicketEntriesResult>();
     }
   }
 }
