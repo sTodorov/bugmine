@@ -18,6 +18,14 @@ namespace Bugmine.Modules.MyPage.ViewModels
 {
 	public class MyPageViewModel : ReactiveValidatedObject
 	{
+		public List<SortByModel> SortBy
+		{
+			get { return _SortBy; }
+
+			set { this.RaiseAndSetIfChanged(c => c.SortBy, value); }
+		}
+		private List<SortByModel> _SortBy;
+
 		private string _redmineBaseUrl;
 
 		public List<TicketModel> Tickets
@@ -54,9 +62,24 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			LoadTickets.Execute(null);
 
 			_redmineBaseUrl = ConfigurationManager.AppSettings["Redmine.BaseRedmineUrl"];
+
+			SortBy = new List<SortByModel>()
+			{
+				new SortByModel("Project", c => c.Project),
+				new SortByModel("Due date", c=> c.DueDate),
+				new SortByModel("Priority", c => c.Priority),		
+			};
+
+			SortByCommand = new ReactiveCommand(this.WhenAny(c => c.Tickets,
+																											((tickets) => tickets.Value != null && tickets.Value.Count > 0)));
+
+			SortByCommand.Subscribe(c => sortTickets((SortByModel)c));
+
 		}
 
 		public ReactiveAsyncCommand LoadTickets { get; private set; }
+
+		public ReactiveCommand SortByCommand { get; private set; }
 
 		private List<TicketModel> loadTickets()
 		{
@@ -71,6 +94,13 @@ namespace Bugmine.Modules.MyPage.ViewModels
 			}
 
 			return mapped;
+		}
+
+		private List<TicketModel> sortTickets(SortByModel model)
+		{
+			Tickets = Tickets.OrderBy(model.Selector).ToList();
+			
+			return Tickets;
 		}
 	}
 }

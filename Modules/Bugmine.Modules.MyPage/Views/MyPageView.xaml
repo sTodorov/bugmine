@@ -17,7 +17,15 @@
 			<RowDefinition></RowDefinition>
 		</Grid.RowDefinitions>
 		<StackPanel Orientation="Horizontal" Grid.Row="0">
-			
+			<Label VerticalAlignment="Center" Margin="0 0 10 0">Sort by</Label>
+			<ComboBox 
+					VerticalAlignment="Center"
+					Width="150"
+					Height="25"
+					ItemsSource="{Binding SortBy}"
+					DisplayMemberPath="Name"
+					SelectionChanged="SortBy_SelectionChanged"
+				/>
 		</StackPanel>
 		<ItemsControl ItemsSource="{Binding Tickets}" Margin="10" Grid.Row="1">
 			<ItemsControl.ItemsPanel>

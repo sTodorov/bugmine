@@ -25,5 +25,7 @@ namespace Bugmine.Modules.MyPage.Models
 		public string Project { get; set; }
 
 		public Uri TicketUrl { get; set; }
+
+		public string Priority { get; set; }
 	}
 }

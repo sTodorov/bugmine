@@ -106,6 +106,7 @@
   <ItemGroup>
     <Compile Include="Mappers\ITicketMapper.cs" />
     <Compile Include="Mappers\TicketMapper.cs" />
+    <Compile Include="Models\SortByModel.cs" />
     <Compile Include="Models\TicketModel.cs" />
     <Compile Include="MyPageModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

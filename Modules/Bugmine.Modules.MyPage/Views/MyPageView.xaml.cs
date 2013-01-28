@@ -22,9 +22,12 @@ namespace Bugmine.Modules.MyPage.Views
 	/// </summary>
 	public partial class MyPageView : UserControl
 	{
+		MyPageViewModel _model;
+
 		public MyPageView(MyPageViewModel model)
 		{
 			InitializeComponent();
+			_model = model;
 			DataContext = model;
 		}
 
@@ -32,6 +35,11 @@ namespace Bugmine.Modules.MyPage.Views
 		{
 			Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
 			e.Handled = true;
+		}
+
+		private void SortBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			_model.SortByCommand.Execute(((ComboBox)sender).SelectedValue);
 		}
 	}
 }
